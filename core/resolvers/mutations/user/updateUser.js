@@ -1,12 +1,12 @@
-const { ObjectID } = require('mongodb');
+const { mongo } = require('mongoose');
 
 module.exports = async (parent, { user }, { dataSources }, info) => {
     const { userAPI, statusAPI } = dataSources;
     const status = await statusAPI.getStatus(user.status);
-    
+
     return await userAPI.updateUser({
         ...user,
-        _id: new ObjectID(user._id),
-        status
+        _id: mongo.ObjectId(user._id),
+        status: mongo.ObjectId(status._id)
     });
 }

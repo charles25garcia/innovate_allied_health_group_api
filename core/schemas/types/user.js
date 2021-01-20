@@ -12,6 +12,7 @@ module.exports = gql`
         lastLoging: Date
         lastLogout: Date
         dateCreated: Date
+        isActive: Boolean
         status: Status
         userLevel: UserLevel
     }

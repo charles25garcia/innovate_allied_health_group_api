@@ -1,5 +1,7 @@
 const { DataSource } = require('apollo-datasource');
 const UserCollection = require('../collections/userCollection');
+const _ = require('lodash');
+const populateStatus = require('./helper/populateStatus');
 
 class UserAPI extends DataSource {
 
@@ -12,11 +14,15 @@ class UserAPI extends DataSource {
     }
 
     async getUsers() {
-        return await UserCollection.find({});
+        return await populateStatus(UserCollection.find({}));
     }
 
-    async getUserByUserNameAndPassword({ userName, password }) {
-        return await UserCollection.find({ userName, password });
+    async getUserByUserNameAndPassword(userName, password) {
+        const users = await this.getUsers();
+        
+        const user = users.find(i => i.userName.toLowerCase() == userName.toLowerCase() && i.password == password);
+
+        return user;
     }
 
     async addNewUser(user) {
@@ -29,9 +35,15 @@ class UserAPI extends DataSource {
     }
 
     async updateUser(user) {
-        console.log(user)
-        return await UserCollection.findByIdAndUpdate({ _id: user._id }, user);
+        
+        await UserCollection.findOneAndUpdate({ _id: user._id }, user, { useFindAndModify: false});
+
+        const updatedUser = await populateStatus(UserCollection.findOne({ _id: user._id }));
+
+        return updatedUser;
     }
+
+ 
 
 }
 

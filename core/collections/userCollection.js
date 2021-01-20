@@ -33,12 +33,15 @@ const userSchema = new Schema({
         type: Date,
         required: true
     }, 
+    isActive: {
+        type: Boolean
+    }, 
     status: {
         type: Schema.Types.ObjectId,
         ref: STATUS_COLLECTION,
         required: true
     }, 
-    userLeve: {
+    userLevel: {
         type: Schema.Types.ObjectId,
         ref: USER_LEVEL_COLLECTION
     }, 

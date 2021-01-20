@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const { QUESTION_COLLECTION, STATUS_COLLECTION } = require('./collections');
 
 const questionSchema = new Schema({
-    name: {
+    title: {
         type: String,
         required: true
     },

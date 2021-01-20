@@ -11,7 +11,7 @@ class StatusAPI extends DataSource {
     }
 
     async getStatus(status) {
-        return await StatusCollection.find({ status });
+        return await StatusCollection.findOne({ status });
     }
 }
 

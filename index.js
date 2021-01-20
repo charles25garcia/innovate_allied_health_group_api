@@ -18,14 +18,10 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     dataSources,
-    debug: false,
-    // formatError: (err) => {
-    //     if(err.extensions.code == 'INTERNAL_SERVER_ERROR') {
-    //         return new ApolloError("We are having some trouble", "ERROR", {token: "uniquetoken"})
-    //     }
-
-    //     return err;
-    // }
+    // debug: false,
+    formatError: (err) => {
+        return new ApolloError("We are having some trouble", "ERROR", {message: err.message});
+    }
 });
 
 server

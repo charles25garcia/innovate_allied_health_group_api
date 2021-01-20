@@ -2,15 +2,17 @@ const { gql } = require("apollo-server");
 
 module.exports = gql`
     type UserLevel {
+        _id: String
         level: Int
-        discription: String
+        levelName: String
         dateCreated: Date
         status: Status
     }
     input UserLevelInput {
+        _id: String
         level: Int
-        discription: String
+        levelName: String
         dateCreated: Date
-        status: StatusInput
+        status: Int
     }
 `;

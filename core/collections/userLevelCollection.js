@@ -5,9 +5,10 @@ const { STATUS_COLLECTION, USER_LEVEL_COLLECTION } = require('./collections');
 const userLevelSchema = new Schema ({
     level: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
-    discription: {
+    levelName: {
         type: String,
         required: true
     },
