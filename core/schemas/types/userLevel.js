@@ -10,9 +10,8 @@ module.exports = gql`
     }
     input UserLevelInput {
         _id: String
-        level: Int
         levelName: String
         dateCreated: Date
-        status: Int
+        status: EnumStatus
     }
 `;

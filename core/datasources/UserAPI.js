@@ -2,6 +2,7 @@ const { DataSource } = require('apollo-datasource');
 const UserCollection = require('../collections/userCollection');
 const _ = require('lodash');
 const populateStatus = require('./helper/populateStatus');
+const populateUserLevel = require('./helper/populateUserLevel');
 
 class UserAPI extends DataSource {
 
@@ -14,7 +15,11 @@ class UserAPI extends DataSource {
     }
 
     async getUsers() {
-        return await populateStatus(UserCollection.find({}));
+        return await populateUserLevel(populateStatus(UserCollection.find({})));
+    }
+
+    async getUserById(_Id) {
+        return await populateStatus(UserCollection.findById(_Id));
     }
 
     async getUserByUserNameAndPassword(userName, password) {
@@ -35,7 +40,6 @@ class UserAPI extends DataSource {
     }
 
     async updateUser(user) {
-        
         await UserCollection.findOneAndUpdate({ _id: user._id }, user, { useFindAndModify: false});
 
         const updatedUser = await populateStatus(UserCollection.findOne({ _id: user._id }));

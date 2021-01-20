@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { USER_COLLECTION, USER_LEVEL_COLLECTION, STATUS_COLLECTION } = require('./collections');
+const { USER_COLLECTION, USER_LEVEL_COLLECTION, STATUS_COLLECTION } = require('./_collectionNames');
 
 const userSchema = new Schema({
     userName: {
@@ -31,10 +31,12 @@ const userSchema = new Schema({
     }, 
     dateCreated: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     }, 
     isActive: {
-        type: Boolean
+        type: Boolean,
+        default: false
     }, 
     status: {
         type: Schema.Types.ObjectId,

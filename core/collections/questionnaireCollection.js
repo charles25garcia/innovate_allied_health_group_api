@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { QUESTION_COLLECTION, STATUS_COLLECTION } = require('./collections');
+const { QUESTIONNAIRE_COLLECTION, STATUS_COLLECTION } = require('./_collectionNames');
 
-const questionSchema = new Schema({
+const questionnaireSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -17,10 +17,11 @@ const questionSchema = new Schema({
     },
     dateCreated: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
 });
 
-const QuestionCollection = mongoose.model( QUESTION_COLLECTION, questionSchema );
+const QuestionnaireCollection = mongoose.model( QUESTIONNAIRE_COLLECTION, questionnaireSchema );
 
-module.exports = QuestionCollection;
+module.exports = QuestionnaireCollection;

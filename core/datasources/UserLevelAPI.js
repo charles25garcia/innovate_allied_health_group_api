@@ -19,6 +19,19 @@ class UserLevelAPI extends DataSource {
         return await populateStatus(UserLevelCollection.findById(id));
     }
 
+    async getUserLevelByLevel(level) {
+        return await populateStatus(UserLevelCollection.findOne({level}));
+    }
+
+    async getNextLevel() {
+
+        const levels = await UserLevelCollection.find({}).select('-_id level');
+
+        const nextLevel = Math.max.apply(Math, levels.map((x) => x.level)) + 1;
+
+        return nextLevel;
+    }
+
     async addNewUserLevel(userLevel) {
         const newUserLevel = new UserLevelCollection(userLevel);
         await newUserLevel.save();

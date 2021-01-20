@@ -19,9 +19,9 @@ const server = new ApolloServer({
     resolvers,
     dataSources,
     // debug: false,
-    formatError: (err) => {
-        return new ApolloError("We are having some trouble", "ERROR", {message: err.message});
-    }
+    // formatError: (err) => {
+    //     return new ApolloError("We are having some trouble", "ERROR", {message: err.message});
+    // }
 });
 
 server

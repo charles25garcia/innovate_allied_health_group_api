@@ -1,12 +1,12 @@
 const mongoose =  require('mongoose');
 const Schema = mongoose.Schema;
-const { STATUS_COLLECTION, USER_LEVEL_COLLECTION } = require('./collections');
+const { STATUS_COLLECTION, USER_LEVEL_COLLECTION } = require('./_collectionNames');
 
 const userLevelSchema = new Schema ({
     level: {
         type: Number,
         required: true,
-        unique: true
+        unique: true,
     },
     levelName: {
         type: String,
@@ -14,7 +14,8 @@ const userLevelSchema = new Schema ({
     },
     dateCreated: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     },
     status: {
         type: Schema.Types.ObjectId,

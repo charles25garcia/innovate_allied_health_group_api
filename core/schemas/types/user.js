@@ -26,7 +26,7 @@ module.exports = gql`
         lastLoging: Date
         lastLogout: Date
         dateCreated: Date
-        status: Int
+        status: EnumStatus
         userLevel: Int
     }
 `;

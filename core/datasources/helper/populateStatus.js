@@ -1,6 +1,5 @@
-const populateStatus = async (collection) => {
-    return await collection
-        .select('-__v')
+const populateStatus = (collection) => {
+    return collection
         .populate(
             {
                 path: 'status',

@@ -6,7 +6,11 @@ module.exports = gql`
         status: Int
     }
     input StatusInput {
-        statusName: String
-        status: Int
+        status: EnumStatus
+    }
+
+    enum EnumStatus {
+        INACTIVE
+        ACTIVE
     }
 `;

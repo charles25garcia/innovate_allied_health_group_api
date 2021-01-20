@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { TEMPLATE_COLLECTION, USER_TEMPLATE_COLLECTION, USER_LEVEL_COLLECTION } = require('./collections');
+const { TEMPLATE_COLLECTION, USER_TEMPLATE_COLLECTION, USER_LEVEL_COLLECTION } = require('./_collectionNames');
 
 const userTemplateShema = new Schema({
     template: {

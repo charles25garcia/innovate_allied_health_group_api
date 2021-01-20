@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const { STATUS_COLLECTION } = require('./collections');
+const { STATUS_COLLECTION } = require('./_collectionNames');
 
 const statusSchema = new Schema({
     statusName: {
