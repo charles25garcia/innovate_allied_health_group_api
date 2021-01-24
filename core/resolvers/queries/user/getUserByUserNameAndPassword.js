@@ -1,5 +1,5 @@
-module.exports = async ( parent, { userName, password }, { dataSources }, info ) => {
-
-    return await dataSources.userAPI.getUserByUserNameAndPassword(userName, password);
+module.exports = async ( args, parent, { rootValue }, info ) => {
+    const { userName, password } = args;
+    return await rootValue.userAPI.getUserByUserNameAndPassword(userName, password);
 
 }

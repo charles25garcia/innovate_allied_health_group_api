@@ -3,9 +3,9 @@ const Mutation = require('./mutation');
 
 module.exports = {
     EnumStatus: {
-        ACTIVE: 1,
-        INACTIVE: 0
+        ENABLE: 1,
+        DISABLE: 0
     },
-    Query,
-    Mutation,
+    ...Query,
+    ...Mutation,
 }

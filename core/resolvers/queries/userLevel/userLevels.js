@@ -1,3 +1,5 @@
-module.exports = async (parent, args, { dataSources }, info) => {
-    return await dataSources.userLevelAPI.getUserLevels();
+const populateStatus = require("../../../../helper/dataSource/populateStatus");
+
+module.exports = async (parent, args, { rootValue }, info) => {
+    return await populateStatus(rootValue.userLevelAPI.getCollections());
 }

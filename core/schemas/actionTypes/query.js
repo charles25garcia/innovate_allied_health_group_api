@@ -1,6 +1,4 @@
-const { gql } = require("apollo-server");
-
-module.exports = gql`
+module.exports = `
     scalar Date
     
     type Query {
@@ -9,5 +7,8 @@ module.exports = gql`
 
         getUserLevelById(id: String): UserLevel
         userLevels: [UserLevel]
+
+        locations: [Location]
+        userLocationMappings: [UserLocationMapping]
     }
 `;

@@ -1,11 +1,15 @@
-const StatusAPI = require("./StatusAPI");
-const UserAPI = require("./userAPI");
-const UserLevelAPI = require("./UserLevelAPI");
+const StatusAPI = require("./derivedAPI/StatusAPI");
+const UserAPI = require("./derivedAPI/userAPI");
+const UserLevelAPI = require("./derivedAPI/UserLevelAPI");
+const LocationAPI = require('./derivedAPI/LocationAPI');
+const UserLocationMappingAPI = require('./derivedAPI/UserLocationMappingAPI');
 
-const dataSource = () => ({
+const dataSource =  {
+    locationAPI: new LocationAPI(),
     statusAPI: new StatusAPI(),
     userAPI: new UserAPI(),
-    userLevelAPI: new UserLevelAPI()
-})
+    userLevelAPI: new UserLevelAPI(),
+    userLocationMappingAPI: new UserLocationMappingAPI()
+};
 
 module.exports = dataSource;

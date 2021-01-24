@@ -1,11 +1,13 @@
-const { ApolloServer, ApolloError } = require('apollo-server');
+const { ApolloServer, ApolloError } = require('apollo-server-express');
 const resolvers = require('./core/resolvers/resolver');
 const dbConnect = require('./core/config/dbConnect');
 const dataSources = require('./core/datasources/datatsource');
-const typeDefs = require('./core/schemas/schemas');
+const schema = require('./core/schemas/schemas');
 const dotenv = require('dotenv');
-const devPORT = 4000;
-
+const devPORT = 5000;
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const auth = require('./core/auth/auth');
 
 dotenv.config({ path: './.env' });
 
@@ -14,20 +16,21 @@ const port = process.env.PORT || devPORT;
 console.info('Starting to connect in Mongo DB...')
 dbConnect();
 
-const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    dataSources,
-    // debug: false,
-    // formatError: (err) => {
-    //     return new ApolloError("We are having some trouble", "ERROR", {message: err.message});
-    // }
-});
+const app = express();
 
-server
-    .listen({
-        port
-    })
-    .then(({ url }) => {
-        console.log(`graphQL running at ${url}`);
-    });
+app.use(auth);
+
+app.use('/', graphqlHTTP({
+    schema,
+    rootValue: {
+        ...resolvers,
+        ...dataSources
+    },
+    pretty: true,
+    graphiql: true,
+        // formatError: (err) => {
+        //     return new ApolloError("We are having some trouble", "ERROR", {message: err.message});
+        // }
+}));
+
+app.listen({ port }, () => console.log(`graphQL running at port: ${port}`));

@@ -1,7 +1,4 @@
-const { gql } = require("apollo-server");
-
-
-module.exports = gql`
+module.exports = `
     type User {
         _id: String
         userName: String
@@ -26,6 +23,7 @@ module.exports = gql`
         lastLoging: Date
         lastLogout: Date
         dateCreated: Date
+        isActive: Boolean
         status: EnumStatus
         userLevel: Int
     }

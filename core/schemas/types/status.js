@@ -1,6 +1,4 @@
-const { gql } = require("apollo-server");
-
-module.exports = gql`
+module.exports = `
     type Status {
         statusName: String
         status: Int
@@ -10,7 +8,7 @@ module.exports = gql`
     }
 
     enum EnumStatus {
-        INACTIVE
-        ACTIVE
+        ENABLE
+        DISABLE
     }
 `;
